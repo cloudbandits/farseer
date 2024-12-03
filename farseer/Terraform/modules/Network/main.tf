@@ -26,7 +26,7 @@ resource "aws_internet_gateway" "main" {
 resource "aws_nat_gateway" "main" {
   count         = var.nat_gateway_count
   allocation_id = aws_eip.nat[count.index].id
-  subnet_id     = aws_subnet.public[count.index].id 
+  subnet_id     = aws_subnet.public[count.index].id
   tags = {
     Name = "${var.environment}-natgw-${count.index}"
   }

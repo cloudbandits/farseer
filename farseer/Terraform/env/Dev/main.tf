@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 module "Network" {
-  source = "../modules/Network" # Adjust to the path of your 'network' module
+  source = "../../modules/Network" # Adjust to the path of your 'network' module
   environment             = var.environment
   vpc_cidr                = var.vpc_cidr             # Example CIDR block for dev
   azs                     = var.azs                  # One AZ for dev
