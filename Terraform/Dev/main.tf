@@ -182,6 +182,11 @@ resource "kubernetes_namespace" "namespace" {
   metadata {
     name = "${var.environment}"
   }
+
+  depends_on = [
+    aws_eks_cluster.eks
+
+  ]
 }
 
 resource "aws_iam_user" "developer" {
