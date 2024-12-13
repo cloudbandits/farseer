@@ -121,7 +121,7 @@ pipeline {
                         ./k8s/qa/qa_k8s_setup.sh $XAI_KEY
                       '''
                     }
-                } else if (env.BRANCH_NAME == 'develop') {
+                } else if (env.BRANCH_NAME.startsWith('develop')) {
                     echo "Navigating back to the root directory"
                     dir('.') {
                       sh '''
