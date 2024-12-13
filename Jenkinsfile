@@ -144,6 +144,16 @@ pipeline {
                     }
 
                 } else if (env.BRANCH_NAME.startsWith('sb')) {
+                    echo "Navigating back to the root directory"
+                    dir('.') {
+                      sh '''
+                        # Ensure script is executable
+                        chmod +x k8s/dev/dev_k8s_setup.sh
+
+                        # Execute the script, passing the XAI_KEY ENV Variable
+                        ./k8s/dev/dev_k8s_setup.sh $XAI_KEY
+                      '''
+                    }                  
                     echo "Deploying to SB Test Environment"
                     dir('Terraform/Dev') { // Navigate to the staging environment directory
                         sh '''
@@ -154,16 +164,7 @@ pipeline {
                         '''
                     // echo "Skipping deployment for feature branch: ${env.BRANCH_NAME}"
                     }
-                    echo "Navigating back to the root directory"
-                    dir('.') {
-                      sh '''
-                        # Ensure script is executable
-                        chmod +x k8s/dev/dev_k8s_setup.sh
 
-                        # Execute the script, passing the XAI_KEY ENV Variable
-                        ./k8s/dev/dev_k8s_setup.sh $XAI_KEY
-                      '''
-                    }
                 } else {
                     echo "No deployment for branch: ${env.BRANCH_NAME}"
                     error("Unknown branch: ${env.BRANCH_NAME}")
