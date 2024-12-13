@@ -128,20 +128,20 @@ pipeline {
                           echo "Current working directory:"
                           pwd
                           terraform init
-                          terraform destroy -auto-approve
+                          terraform apply -auto-approve
                         '''
                     // echo "Skipping deployment for feature branch: ${env.BRANCH_NAME}"
                     }
-                    // echo "Navigating back to the root directory"
-                    // dir('.') {
-                    //   sh '''
-                    //     # Ensure script is executable
-                    //     chmod +x k8s/dev/dev_k8s_setup.sh
+                    echo "Navigating back to the root directory"
+                    dir('.') {
+                      sh '''
+                        # Ensure script is executable
+                        chmod +x k8s/dev/dev_k8s_setup.sh
 
-                    //     # Execute the script, passing the XAI_KEY ENV Variable
-                    //     ./k8s/dev/dev_k8s_setup.sh $XAI_KEY
-                    //   '''
-                    // }
+                        # Execute the script, passing the XAI_KEY ENV Variable
+                        ./k8s/dev/dev_k8s_setup.sh $XAI_KEY
+                      '''
+                    }
 
                 } else if (env.BRANCH_NAME.startsWith('sb')) {
                     echo "Deploying to SB Test Environment"
