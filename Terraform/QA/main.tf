@@ -53,7 +53,7 @@ output "private_ips" {
 }
 
 resource "aws_iam_role" "eks" {
-  name = "${var.environment}-test-eks-cluster-role"
+  name = "${var.environment}-eks-cluster-role"
 
   assume_role_policy = <<POLICY
 {
@@ -101,7 +101,7 @@ resource "aws_eks_cluster" "eks" {
 }
 
 resource "aws_iam_role" "nodes" {
-  name = "${var.environment}-test-eks-nodes-role"
+  name = "${var.environment}-eks-nodes-role"
 
   assume_role_policy = <<POLICY
 {
@@ -223,7 +223,7 @@ resource "aws_eks_access_entry" "developer" {
 data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "eks_admin" {
-  name = "${var.environment}-test-eks-admin-role"
+  name = "${var.environment}-eks-admin-role"
 
   assume_role_policy = <<POLICY
 {
