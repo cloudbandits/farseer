@@ -17,7 +17,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: k8s-sb-frontend-14dcc7d597-1451987193.us-east-1.elb.amazonaws.com
+    - host: k8s-dev-frontend-3fbea81a34-220168409.us-east-1.elb.amazonaws.com
       http:
         paths:
           - path: /
